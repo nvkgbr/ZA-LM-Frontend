@@ -9,6 +9,8 @@ import { RentsComponent } from './components/rents/rents.component';
 import { RentersComponent } from './components/renters/renters.component';
 import { LogsComponent } from './components/logs/logs.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BooksSearchComponent } from './components/books/books-search/books-search.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     RentsComponent,
     RentersComponent,
     LogsComponent,
+    BooksSearchComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
