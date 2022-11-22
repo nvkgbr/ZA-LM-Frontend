@@ -1,1 +1,28 @@
-<p>books works!</p>
+<div class="container is-max-desktop">
+	<lm-books-search (bookInputChanged)="handleSearchChange($event)"></lm-books-search>
+
+	<table class="table is-bordered is-striped is-narrow is-fullwidth is-striped">
+		<thead>
+			<tr class="th is-selected">
+				<th class="is-warning has-text-black">Title</th>
+				<th class="is-warning has-text-black">Author</th>
+				<th class="is-warning has-text-black">ISBN</th>
+				<th class="is-warning has-text-black"></th>
+				<th class="is-warning has-text-black"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let book of filteredBookList">
+				<td>{{ book.title }}</td>
+				<td>{{ book.author }}</td>
+				<td>{{ book.ISBN }}</td>
+				<td class="has-text-centered">
+					<button class="button is-warning is-light"><i class="fa fa-pencil"></i></button>
+				</td>
+				<td class="has-text-centered">
+					<button class="button is-danger is-light"><i class="fa fa-trash"></i></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
