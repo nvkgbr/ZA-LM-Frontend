@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
 import { EMPTY } from 'rxjs';
 import { Book } from 'src/app/model/book.model';
-import { BookHttpService } from 'src/app/services/book-http.service';
+import { BookHttpService } from 'src/app/services/book-http/book-http.service';
 
 @Component({
 	selector: 'lm-books',
