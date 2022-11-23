@@ -14,4 +14,9 @@ export class RenterHttpService {
 	public getAllRenter(): Observable<Renter[]> {
 		return this.http.get<Renter[]>(this.RENTER_API_URL);
 	}
+
+	public deleteRenter(id: string): Observable<any> {
+		const url = `${this.RENTER_API_URL}${id}`;
+		return this.http.delete<any>(url);
+	}
 }

@@ -54,4 +54,13 @@ export class BooksComponent implements OnInit {
 			this.filteredBookList = this.bookList;
 		}
 	}
+
+	public deleteClick(book: Book) {
+		if (confirm(`Are you sure you want to delete the book '${book.title}'`)) {
+			this.bookHttpService.deleteBook(book.id).subscribe((response) => {
+				console.log(response);
+				this.refreshBooks();
+			});
+		}
+	}
 }

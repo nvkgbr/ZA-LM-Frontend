@@ -14,4 +14,9 @@ export class BookHttpService {
 	public getAllBooks(): Observable<Book[]> {
 		return this.http.get<Book[]>(this.BOOKS_API_URL);
 	}
+
+	public deleteBook(id: string): Observable<any> {
+		const url = `${this.BOOKS_API_URL}${id}`;
+		return this.http.delete<any>(url);
+	}
 }
