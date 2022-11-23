@@ -51,4 +51,13 @@ export class RentersComponent implements OnInit {
 			this.filteredRenterList = this.renterList;
 		}
 	}
+
+	public deleteClick(renter: Renter) {
+		if (confirm(`Are you sure you want to delete the renter '${renter.name}'`)) {
+			this.renterHttpService.deleteRenter(renter.id).subscribe((response) => {
+				console.log(response);
+				this.refreshRenter();
+			});
+		}
+	}
 }

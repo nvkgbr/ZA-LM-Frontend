@@ -14,4 +14,9 @@ export class RentsHttpService {
 	public getAllRents(): Observable<Rents[]> {
 		return this.http.get<Rents[]>(this.RENTS_API_URL);
 	}
+
+	public deleteRent(id: string): Observable<any> {
+		const url = `${this.RENTS_API_URL}${id}`;
+		return this.http.delete<any>(url);
+	}
 }
