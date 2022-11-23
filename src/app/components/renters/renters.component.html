@@ -1,1 +1,28 @@
-<p>renters works!</p>
+<div class="container is-max-desktop">
+	<lm-renter-search (renterInputChanged)="handleSearchChange($event)"></lm-renter-search>
+
+	<table class="table is-bordered is-striped is-narrow is-fullwidth is-striped">
+		<thead>
+			<tr class="th is-selected">
+				<th class="is-warning has-text-black">Name</th>
+				<th class="is-warning has-text-black">Birth</th>
+				<th class="is-warning has-text-black">Email</th>
+				<th class="is-warning has-text-black has-text-centered">Update</th>
+				<th class="is-warning has-text-black has-text-centered">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let renter of filteredRenterList">
+				<td>{{ renter.name }}</td>
+				<td>{{ renter.birth }}</td>
+				<td>{{ renter.email }}</td>
+				<td class="has-text-centered">
+					<button class="button is-warning is-light"><i class="fa fa-pencil"></i></button>
+				</td>
+				<td class="has-text-centered">
+					<button class="button is-danger is-light"><i class="fa fa-trash"></i></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

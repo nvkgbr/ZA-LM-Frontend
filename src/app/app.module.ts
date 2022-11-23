@@ -11,24 +11,13 @@ import { LogsComponent } from './components/logs/logs.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BooksSearchComponent } from './components/books/books-search/books-search.component';
+import { RenterSearchComponent } from './components/renters/renter-search/renter-search.component';
+import { RentsSearchComponent } from './components/rents/rents-search/rents-search.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    BooksComponent,
-    RentsComponent,
-    RentersComponent,
-    LogsComponent,
-    BooksSearchComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+	declarations: [AppComponent, NavbarComponent, BooksComponent, RentsComponent, RentersComponent, LogsComponent, BooksSearchComponent, RenterSearchComponent, RentsSearchComponent],
+	providers: [],
+	bootstrap: [AppComponent],
+	imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule]
 })
 export class AppModule {}
