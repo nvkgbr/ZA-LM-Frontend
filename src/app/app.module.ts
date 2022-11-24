@@ -17,11 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { SearcbarComponent } from './components/searcbar/searcbar.component';
 import { CreateRentsComponent } from './components/rents/create-rents/create-rents.component';
+import { CreateBooksComponent } from './components/books/create-books/create-books.component';
+import { CreateRenterComponent } from './components/renters/create-renter/create-renter.component';
 
 registerLocaleData(en);
 
 @NgModule({
-	declarations: [AppComponent, NavbarComponent, BooksComponent, RentsComponent, RentersComponent, LogsComponent, CreateRentsComponent, SearcbarComponent],
+	declarations: [AppComponent, NavbarComponent, BooksComponent, RentsComponent, RentersComponent, LogsComponent, CreateRentsComponent, SearcbarComponent, CreateBooksComponent, CreateRenterComponent],
 	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent],
 	imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule, FormsModule, BrowserAnimationsModule, NzModalModule]

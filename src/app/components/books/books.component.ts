@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/model/book.model';
 import { BookHttpService } from 'src/app/services/book-http/book-http.service';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { PostBook } from '../../model/book.model';
+import { CreateBooksComponent } from './create-books/create-books.component';
 
 @Component({
 	selector: 'lm-books',
@@ -80,5 +82,23 @@ export class BooksComponent implements OnInit {
 		});
 	}
 
-	public createClick(book: Book) {}
+	public createClick() {
+		const ref: NzModalRef = this.modal.confirm({
+			nzTitle: 'Create new rent!',
+			nzContent: CreateBooksComponent,
+			nzOkText: 'Yes',
+			nzOkType: 'primary',
+			nzOkDanger: true,
+			nzOnOk: () => this.createBook(ref.componentInstance.bookForm.value),
+			nzCancelText: 'No',
+			nzOnCancel: () => console.log('Cancel')
+		});
+	}
+
+	public createBook(book: PostBook) {
+		this.bookHttpService.createBook(book).subscribe(() => {
+			this.refreshBooks();
+		});
+		console.log(book);
+	}
 }

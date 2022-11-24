@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { Renter } from 'src/app/model/renter.model';
 import { RenterHttpService } from 'src/app/services/renters-http/renters-http.service';
+import { CreateRenterComponent } from './create-renter/create-renter.component';
+import { PostRenter } from '../../model/renter.model';
 @Component({
 	selector: 'lm-renters',
 	templateUrl: './renters.component.html',
@@ -71,5 +73,25 @@ export class RentersComponent implements OnInit {
 			console.log(response);
 			this.refreshRenter();
 		});
+	}
+
+	public createClick() {
+		const ref: NzModalRef = this.modal.confirm({
+			nzTitle: 'Create new rent!',
+			nzContent: CreateRenterComponent,
+			nzOkText: 'Yes',
+			nzOkType: 'primary',
+			nzOkDanger: true,
+			nzOnOk: () => this.createRenter(ref.componentInstance.renterForm.value),
+			nzCancelText: 'No',
+			nzOnCancel: () => console.log('Cancel')
+		});
+	}
+
+	public createRenter(renter: PostRenter) {
+		this.renterHttpService.createRenter(renter).subscribe(() => {
+			this.refreshRenter();
+		});
+		console.log(renter);
 	}
 }
