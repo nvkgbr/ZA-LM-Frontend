@@ -63,7 +63,7 @@ export class BooksComponent implements OnInit {
 		// }
 		this.modal.confirm({
 			nzTitle: 'You sure you want to delete this book?',
-			nzContent: `<b style="color: red;">${book.author}-${book.title}</b>`,
+			nzContent: `<b style="color: red;">Author: ${book.author}<br>Title: ${book.title}</b>`,
 			nzOkText: 'Yes',
 			nzOkType: 'primary',
 			nzOkDanger: true,
