@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -8,16 +7,21 @@ import { BooksComponent } from './components/books/books.component';
 import { RentsComponent } from './components/rents/rents.component';
 import { RentersComponent } from './components/renters/renters.component';
 import { LogsComponent } from './components/logs/logs.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BooksSearchComponent } from './components/books/books-search/books-search.component';
-import { RenterSearchComponent } from './components/renters/renter-search/renter-search.component';
-import { RentsSearchComponent } from './components/rents/rents-search/rents-search.component';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+
+registerLocaleData(en);
 
 @NgModule({
-	declarations: [AppComponent, NavbarComponent, BooksComponent, RentsComponent, RentersComponent, LogsComponent, BooksSearchComponent, RenterSearchComponent, RentsSearchComponent],
-	providers: [],
+	declarations: [AppComponent, NavbarComponent, BooksComponent, RentsComponent, RentersComponent, LogsComponent],
+	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent],
-	imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule]
+	imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule, FormsModule, BrowserAnimationsModule, NzModalModule]
 })
 export class AppModule {}
