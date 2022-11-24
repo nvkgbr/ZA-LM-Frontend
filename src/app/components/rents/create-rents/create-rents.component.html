@@ -1,0 +1,28 @@
+<fieldset>
+    <form [formGroup]="rentsForm">
+    <table>
+        <tr>
+            <td><label>Renter:</label></td>
+            <td><select formControlName="renter">
+                    <option class="default" value="" selected>Choose a renter</option>
+                    <option *ngFor="let renter of renterList" value="{{renter.id}}">{{renter.name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Book:</label></td>
+            <td>
+                <select formControlName="book">
+                    <option *ngFor="let book of bookList" value="{{book.id}}">{{book.title}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Expiration day:</label></td>
+            <td><input type="date" formControlName="expired"/></td>  
+        </tr>
+    </table>
+    <button (click)="test()">📝</button>
+</form>
+</fieldset>
+

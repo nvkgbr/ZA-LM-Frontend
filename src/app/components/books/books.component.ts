@@ -79,4 +79,6 @@ export class BooksComponent implements OnInit {
 			this.refreshBooks();
 		});
 	}
+
+	public createClick(book: Book) {}
 }

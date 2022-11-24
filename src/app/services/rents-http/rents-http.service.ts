@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Rents } from 'src/app/model/rents.model';
+import { PostRent } from '../../model/rents.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -18,5 +19,9 @@ export class RentsHttpService {
 	public deleteRent(id: string): Observable<any> {
 		const url = `${this.RENTS_API_URL}${id}`;
 		return this.http.delete<any>(url);
+	}
+	public createRent(rent: PostRent): Observable<PostRent> {
+		const url = `${this.RENTS_API_URL}`;
+		return this.http.post<PostRent>(url, rent);
 	}
 }

@@ -10,3 +10,14 @@ export interface Rents {
 	expired: Date;
 	status: Status;
 }
+
+export interface PostRent {
+	renter: string;
+	book: string;
+	expired: Date;
+}
+
+export interface UpdateRent {
+	expired: Date;
+	status: Status;
+}
