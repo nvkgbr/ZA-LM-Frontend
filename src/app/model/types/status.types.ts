@@ -1,1 +1,1 @@
-export type Status = 'active' | 'closed' | 'expired';
+export type Status = 'active' | 'expired';

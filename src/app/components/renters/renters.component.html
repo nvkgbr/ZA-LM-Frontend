@@ -13,7 +13,7 @@
 		<tbody>
 			<tr *ngFor="let renter of filteredRenterList">
 				<td>{{ renter.name }}</td>
-				<td>{{ renter.birth }}</td>
+				<td>{{ renter.birth | date:"YYYY MMMM dd." }}</td>
 				<td>{{ renter.email }}</td>
 				<td class="has-text-centered">
 					<button class="button is-warning is-light"><i class="fa fa-pencil"></i></button>
@@ -24,4 +24,5 @@
 			</tr>
 		</tbody>
 	</table>
+	<button (click)="createClick()">Add new renter 📝</button>
 </div>

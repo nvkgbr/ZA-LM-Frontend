@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { Rents } from 'src/app/model/rents.model';
 import { RentsHttpService } from 'src/app/services/rents-http/rents-http.service';
+import { PostRent } from '../../model/rents.model';
+import { CreateRentsComponent } from './create-rents/create-rents.component';
 
 @Component({
 	selector: 'lm-rents',
@@ -72,5 +74,25 @@ export class RentsComponent implements OnInit {
 			console.log(response);
 			this.refreshRents();
 		});
+	}
+
+	public createClick() {
+		const ref: NzModalRef = this.modal.confirm({
+			nzTitle: 'Create new rent!',
+			nzContent: CreateRentsComponent,
+			nzOkText: 'Yes',
+			nzOkType: 'primary',
+			nzOkDanger: true,
+			nzOnOk: () => this.createRent(ref.componentInstance.rentsForm.value),
+			nzCancelText: 'No',
+			nzOnCancel: () => console.log('Cancel')
+		});
+	}
+
+	public createRent(rents: PostRent) {
+		this.rentsHttpService.createRent(rents).subscribe(() => {
+			this.refreshRents();
+		});
+		console.log(rents);
 	}
 }

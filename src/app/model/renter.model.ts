@@ -4,3 +4,15 @@ export interface Renter {
 	birth: Date;
 	email: string;
 }
+
+export interface PostRenter {
+	name: string;
+	birth: Date;
+	email: string;
+}
+
+export interface UpdateRenter {
+	name: string;
+	birth: Date;
+	email: string;
+}
