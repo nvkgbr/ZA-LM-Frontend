@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
-import { EMPTY } from 'rxjs';
 import { Book } from 'src/app/model/book.model';
 import { BookHttpService } from 'src/app/services/book-http/book-http.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
 	selector: 'lm-books',
@@ -29,7 +28,7 @@ export class BooksComponent implements OnInit {
 		this._bookList = value;
 	}
 
-	constructor(private bookHttpService: BookHttpService) {}
+	constructor(private bookHttpService: BookHttpService, private modal: NzModalService) {}
 
 	public ngOnInit(): void {
 		this.refreshBooks();
@@ -56,11 +55,28 @@ export class BooksComponent implements OnInit {
 	}
 
 	public deleteClick(book: Book) {
-		if (confirm(`Are you sure you want to delete the book '${book.title}'`)) {
-			this.bookHttpService.deleteBook(book.id).subscribe((response) => {
-				console.log(response);
-				this.refreshBooks();
-			});
-		}
+		// if (confirm(`Are you sure you want to delete the book '${book.title}'`)) {
+		// 	this.bookHttpService.deleteBook(book.id).subscribe((response) => {
+		// 		console.log(response);
+		// 		this.refreshBooks();
+		// 	});
+		// }
+		this.modal.confirm({
+			nzTitle: 'You sure you want to delete this book?',
+			nzContent: `<b style="color: red;">${book.author}-${book.title}</b>`,
+			nzOkText: 'Yes',
+			nzOkType: 'primary',
+			nzOkDanger: true,
+			nzOnOk: () => this.deleteBook(book),
+			nzCancelText: 'No',
+			nzOnCancel: () => console.log('Cancel')
+		});
+	}
+
+	public deleteBook(book: Book) {
+		this.bookHttpService.deleteBook(book.id).subscribe((response) => {
+			console.log(response);
+			this.refreshBooks();
+		});
 	}
 }
