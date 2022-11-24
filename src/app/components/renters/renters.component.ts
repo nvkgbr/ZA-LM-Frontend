@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { Renter } from 'src/app/model/renter.model';
 import { RenterHttpService } from 'src/app/services/renters-http/renters-http.service';
 @Component({
@@ -26,7 +27,7 @@ export class RentersComponent implements OnInit {
 		this._renterList = value;
 	}
 
-	constructor(private renterHttpService: RenterHttpService) {}
+	constructor(private renterHttpService: RenterHttpService, private modal: NzModalService) {}
 
 	public ngOnInit(): void {
 		this.refreshRenter();
@@ -53,11 +54,22 @@ export class RentersComponent implements OnInit {
 	}
 
 	public deleteClick(renter: Renter) {
-		if (confirm(`Are you sure you want to delete the renter '${renter.name}'`)) {
-			this.renterHttpService.deleteRenter(renter.id).subscribe((response) => {
-				console.log(response);
-				this.refreshRenter();
-			});
-		}
+		this.modal.confirm({
+			nzTitle: 'You sure you want to delete this renter?',
+			nzContent: `<b style="color: red;">Renter: ${renter.name}<br>Birth: ${renter.birth}<br>Email: ${renter.email}</b>`,
+			nzOkText: 'Yes',
+			nzOkType: 'primary',
+			nzOkDanger: true,
+			nzOnOk: () => this.deleteRenter(renter),
+			nzCancelText: 'No',
+			nzOnCancel: () => console.log('Cancel')
+		});
+	}
+
+	public deleteRenter(renter: Renter) {
+		this.renterHttpService.deleteRenter(renter.id).subscribe((response) => {
+			console.log(response);
+			this.refreshRenter();
+		});
 	}
 }
