@@ -11,6 +11,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +30,18 @@ registerLocaleData(en);
 	declarations: [AppComponent, NavbarComponent, BooksComponent, RentsComponent, RentersComponent, LogsComponent, CreateRentsComponent, SearcbarComponent, CreateBooksComponent, CreateRenterComponent],
 	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent],
-	imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule, FormsModule, BrowserAnimationsModule, NzModalModule]
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		ReactiveFormsModule,
+		HttpClientModule,
+		FormsModule,
+		BrowserAnimationsModule,
+		NzModalModule,
+		NzDatePickerModule,
+		NzSelectModule,
+		NzGridModule,
+		NzInputModule
+	]
 })
 export class AppModule {}

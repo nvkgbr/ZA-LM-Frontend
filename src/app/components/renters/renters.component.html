@@ -1,5 +1,13 @@
 <div class="container is-max-desktop">
-	<lm-searcbar (inputChanged)="handleSearchChange($event)"></lm-searcbar>
+	<div nz-row>
+		<div nz-col nzXs="8" nzSm="10" nzMd="12" nzLg="18" nzXl="20">
+			<lm-searcbar (inputChanged)="handleSearchChange($event)"></lm-searcbar>
+		</div>
+		<div nz-col nzXs="6" nzSm="8" nzMd="12" nzLg="6" nzXl="4">
+			<button class="button is-info is-light modal-btn" (click)="createClick()">Add new renter 📝</button>
+		</div>
+	</div>
+
 	<table class="table is-bordered is-striped is-narrow is-fullwidth is-striped">
 		<thead>
 			<tr class="th is-selected">
@@ -13,7 +21,7 @@
 		<tbody>
 			<tr *ngFor="let renter of filteredRenterList">
 				<td>{{ renter.name }}</td>
-				<td>{{ renter.birth | date:"YYYY MMMM dd." }}</td>
+				<td>{{ renter.birth | date : 'YYYY MMMM dd.' }}</td>
 				<td>{{ renter.email }}</td>
 				<td class="has-text-centered">
 					<button class="button is-warning is-light"><i class="fa fa-pencil"></i></button>
@@ -24,5 +32,4 @@
 			</tr>
 		</tbody>
 	</table>
-	<button (click)="createClick()">Add new renter 📝</button>
 </div>

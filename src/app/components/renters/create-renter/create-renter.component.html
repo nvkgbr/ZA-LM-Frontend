@@ -1,20 +1,18 @@
 <fieldset>
-    <form [formGroup]="renterForm">
-    <table>
-        <tr>
-            <td><label>Name:</label></td>
-            <td><input type="text" formControlName="name" />
-            </td>
-        </tr>
-        <tr>
-            <td><label>Birth:</label></td>
-            <td><input type="date" formControlName="birth" /></td>
-        </tr>
-        <tr>
-            <td><label>Email:</label></td>
-            <td><input type="text" formControlName="email" /></td>  
-        </tr>
-    </table>
-</form>
+	<form [formGroup]="renterForm">
+		<table>
+			<tr>
+				<td><label>Name:</label></td>
+				<td><input nz-input placeholder="Name" type="text" formControlName="name" /></td>
+			</tr>
+			<tr>
+				<td><label>Birth:</label></td>
+				<td><nz-date-picker formControlName="birth"></nz-date-picker></td>
+			</tr>
+			<tr>
+				<td><label>Email:</label></td>
+				<td><input type="email" nz-input placeholder="Email" formControlName="email" /></td>
+			</tr>
+		</table>
+	</form>
 </fieldset>
-

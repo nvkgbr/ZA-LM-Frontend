@@ -1,27 +1,28 @@
 <fieldset>
-    <form [formGroup]="rentsForm">
-    <table>
-        <tr>
-            <td><label>Renter:</label></td>
-            <td><select formControlName="renter">
-                    <option class="default" value="" selected>Choose a renter</option>
-                    <option *ngFor="let renter of renterList" value="{{renter.id}}">{{renter.name}}</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Book:</label></td>
-            <td>
-                <select formControlName="book">
-                    <option *ngFor="let book of bookList" value="{{book.id}}">{{book.title}}</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Expiration day:</label></td>
-            <td><input type="date" formControlName="expired"/></td>  
-        </tr>
-    </table>
-</form>
+	<form [formGroup]="rentsForm">
+		<table>
+			<tr>
+				<td><label>Renter:</label></td>
+				<td>
+					<nz-select formControlName="renter" nzPlaceHolder="Choose">
+						<nz-option *ngFor="let renter of renterList" nzValue="{{ renter.id }}" nzLabel="{{ renter.name }}"> </nz-option>
+					</nz-select>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Book:</label></td>
+				<td>
+					<nz-select formControlName="book" nzPlaceHolder="Choose">
+						<nz-option *ngFor="let book of bookList" nzValue="{{ book.id }}" nzLabel="{{ book.title }}"> </nz-option>
+					</nz-select>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Expired at:</label></td>
+				<td>
+					<nz-date-picker formControlName="expired"></nz-date-picker>
+				</td>
+			</tr>
+		</table>
+	</form>
 </fieldset>
-

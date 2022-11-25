@@ -84,7 +84,7 @@ export class BooksComponent implements OnInit {
 
 	public createClick() {
 		const ref: NzModalRef = this.modal.confirm({
-			nzTitle: 'Create new rent!',
+			nzTitle: 'Create new book!',
 			nzContent: CreateBooksComponent,
 			nzOkText: 'Yes',
 			nzOkType: 'primary',

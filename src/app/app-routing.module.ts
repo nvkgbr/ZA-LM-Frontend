@@ -5,25 +5,25 @@ import { RentersComponent } from './components/renters/renters.component';
 import { RentsComponent } from './components/rents/rents.component';
 
 const routes: Routes = [
-  {
-    path: 'books',
-    component: BooksComponent,
-    data: { show: true, name: 'Books' },
-  },
-  {
-    path: 'rents',
-    component: RentsComponent,
-    data: { show: true, name: 'Rents' },
-  },
-  {
-    path: 'renters',
-    component: RentersComponent,
-    data: { show: true, name: 'Renters' },
-  },
-  { path: '**', redirectTo: 'books', data: { show: false, name: '' } },
+	{
+		path: 'books',
+		component: BooksComponent,
+		data: { show: true, name: 'Books' }
+	},
+	{
+		path: 'rents',
+		component: RentsComponent,
+		data: { show: true, name: 'Rents' }
+	},
+	{
+		path: 'renters',
+		component: RentersComponent,
+		data: { show: true, name: 'Renters' }
+	},
+	{ path: '**', redirectTo: 'books', data: { show: false, name: '' } }
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule {}

@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lm-logs',
-  templateUrl: './logs.component.html',
-  styleUrls: ['./logs.component.scss']
+	selector: 'lm-logs',
+	templateUrl: './logs.component.html',
+	styleUrls: ['./logs.component.scss']
 })
 export class LogsComponent implements OnInit {
+	constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void {}
 }
