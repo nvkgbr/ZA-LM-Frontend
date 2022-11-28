@@ -77,7 +77,7 @@ export class RentsComponent implements OnInit {
 	}
 
 	public createClick() {
-		const ref: NzModalRef = this.modal.confirm({
+		const ref: NzModalRef = this.modal.info({
 			nzTitle: 'Create new rent!',
 			nzContent: CreateRentsComponent,
 			nzOkText: 'Yes',

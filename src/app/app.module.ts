@@ -23,11 +23,24 @@ import { SearcbarComponent } from './components/searcbar/searcbar.component';
 import { CreateRentsComponent } from './components/rents/create-rents/create-rents.component';
 import { CreateBooksComponent } from './components/books/create-books/create-books.component';
 import { CreateRenterComponent } from './components/renters/create-renter/create-renter.component';
+import { UpdateBooksComponent } from './components/books/update-books/update-books.component';
 
 registerLocaleData(en);
 
 @NgModule({
-	declarations: [AppComponent, NavbarComponent, BooksComponent, RentsComponent, RentersComponent, LogsComponent, CreateRentsComponent, SearcbarComponent, CreateBooksComponent, CreateRenterComponent],
+	declarations: [
+		AppComponent,
+		NavbarComponent,
+		BooksComponent,
+		RentsComponent,
+		RentersComponent,
+		LogsComponent,
+		CreateRentsComponent,
+		SearcbarComponent,
+		CreateBooksComponent,
+		CreateRenterComponent,
+		UpdateBooksComponent
+	],
 	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent],
 	imports: [

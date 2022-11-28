@@ -14,4 +14,5 @@ export interface PostBook {
 export interface UpdateBook {
 	title: string;
 	author: string;
+	ISBN: string;
 }

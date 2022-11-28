@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from 'src/app/model/book.model';
+import { Book, UpdateBook } from 'src/app/model/book.model';
 import { BookHttpService } from 'src/app/services/book-http/book-http.service';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { PostBook } from '../../model/book.model';
 import { CreateBooksComponent } from './create-books/create-books.component';
+import { UpdateBooksComponent } from './update-books/update-books.component';
 
 @Component({
 	selector: 'lm-books',
@@ -57,12 +58,6 @@ export class BooksComponent implements OnInit {
 	}
 
 	public deleteClick(book: Book) {
-		// if (confirm(`Are you sure you want to delete the book '${book.title}'`)) {
-		// 	this.bookHttpService.deleteBook(book.id).subscribe((response) => {
-		// 		console.log(response);
-		// 		this.refreshBooks();
-		// 	});
-		// }
 		this.modal.confirm({
 			nzTitle: 'You sure you want to delete this book?',
 			nzContent: `<b style="color: red;">Author: ${book.author}<br>Title: ${book.title}</b>`,
@@ -95,10 +90,34 @@ export class BooksComponent implements OnInit {
 		});
 	}
 
-	public createBook(book: PostBook) {
+	private createBook(book: PostBook) {
 		this.bookHttpService.createBook(book).subscribe(() => {
 			this.refreshBooks();
 		});
 		console.log(book);
+	}
+
+	public updateClick(book: Book) {
+		const ref: NzModalRef = this.modal.confirm({
+			nzTitle: 'Update book!',
+			nzContent: UpdateBooksComponent,
+			nzOkText: 'Yes',
+			nzOkType: 'primary',
+			nzOkDanger: true,
+			nzOnOk: () => this.updateBook(book.id, ref.componentInstance.bookForm.value),
+			nzCancelText: 'No',
+			nzOnCancel: () => console.log(ref.componentInstance.bookForm.value)
+		});
+
+		ref.componentInstance.title.setValue(book.title);
+		ref.componentInstance.ISBN.setValue(book.ISBN);
+		ref.componentInstance.author.setValue(book.author);
+	}
+
+	private updateBook(id: string, book: UpdateBook) {
+		console.log(`${id} többi: ${JSON.stringify(book)}`);
+		this.bookHttpService.updateBook(id, book).subscribe(() => {
+			this.refreshBooks();
+		});
 	}
 }
