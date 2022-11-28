@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { authorRegex, isbnRegex, titleRegex } from 'src/lib/validators/validator.properties';
 
 @Component({
 	selector: 'lm-create-books',
@@ -8,9 +9,9 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CreateBooksComponent implements OnInit {
 	public bookForm = this.fb.group({
-		title: [''],
-		author: [''],
-		ISBN: ['']
+		title: ['', [Validators.required, Validators.pattern(titleRegex)]],
+		author: ['', [Validators.required, Validators.pattern(authorRegex)]],
+		ISBN: ['', [Validators.required, Validators.pattern(isbnRegex)]]
 	});
 
 	constructor(private readonly fb: FormBuilder) {}
