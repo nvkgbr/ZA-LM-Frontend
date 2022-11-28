@@ -5,3 +5,6 @@ input {
 nz-date-picker {
 	margin: 0 8px 10px 10px;
 }
+.ng-invalid:not(form){
+    border:1px solid red;
+}

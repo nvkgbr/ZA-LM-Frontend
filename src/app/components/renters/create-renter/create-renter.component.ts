@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { nameRegex } from '../../../../lib/validators/validator.properties';
 
 @Component({
 	selector: 'lm-create-renter',
@@ -8,9 +9,9 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CreateRenterComponent implements OnInit {
 	public renterForm = this.fb.group({
-		name: [''],
-		birth: [''],
-		email: ['']
+		name: ['', [Validators.required, Validators.pattern(nameRegex)]],
+		birth: ['', Validators.required],
+		email: ['', [Validators.required, Validators.email]]
 	});
 
 	constructor(private readonly fb: FormBuilder) {}
