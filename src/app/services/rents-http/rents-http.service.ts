@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Rents } from 'src/app/model/rents.model';
+import { Rents, UpdateRent } from 'src/app/model/rents.model';
 import { PostRent } from '../../model/rents.model';
 
 @Injectable({
@@ -23,5 +23,12 @@ export class RentsHttpService {
 	public createRent(rent: PostRent): Observable<PostRent> {
 		const url = `${this.RENTS_API_URL}`;
 		return this.http.post<PostRent>(url, rent);
+	};
+
+	public updateRenter(id: string, rent: UpdateRent): Observable<any> {
+		const url = `${this.RENTS_API_URL}${id}`;
+		console.log(url);
+
+		return this.http.put(url, rent);
 	}
 }

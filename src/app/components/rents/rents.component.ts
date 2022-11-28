@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { Rents } from 'src/app/model/rents.model';
+import { Rents, UpdateRent } from 'src/app/model/rents.model';
+import { LoadService } from 'src/app/services/load.service';
 import { RentsHttpService } from 'src/app/services/rents-http/rents-http.service';
 import { PostRent } from '../../model/rents.model';
 import { CreateRentsComponent } from './create-rents/create-rents.component';
+import { UpdateRentsComponent } from './update-rents/update-rents.component';
 
 @Component({
 	selector: 'lm-rents',
@@ -30,29 +32,37 @@ export class RentsComponent implements OnInit {
 		this._rentsList = value;
 	}
 
-	constructor(private rentsHttpService: RentsHttpService, private modal: NzModalService) {}
+	constructor(private rentsHttpService: RentsHttpService, private modal: NzModalService, private loadService: LoadService) { 
+		this.loadService.show();
+	}
 
 	public ngOnInit(): void {
 		this.refreshRents();
 	}
 
 	private refreshRents(): void {
+		this.loadService.show();
 		this.rentsHttpService.getAllRents().subscribe((rents) => {
 			this.rentsList = [...rents];
 			this.filteredRentsList = [...rents];
+			this.loadService.hide();
 			console.log(this.rentsList);
 		});
 	}
 
 	public handleSearchChange(input: string): void {
+		this.loadService.show();
 		if (input.length >= 3) {
 			setTimeout(() => {
+			this.loadService.hide();
 				this.filteredRentsList = this.rentsList.filter((rents: Rents) => {
 					return rents?.renter?.name.toLocaleLowerCase().includes(input.toLocaleLowerCase());
 				});
 			}, 1000);
 		} else {
 			this.filteredRentsList = this.rentsList;
+			this.loadService.hide();
+
 		}
 	}
 
@@ -94,5 +104,28 @@ export class RentsComponent implements OnInit {
 			this.refreshRents();
 		});
 		console.log(rents);
+	};
+
+	public updateClick(rent: Rents) {
+		const ref: NzModalRef = this.modal.info({
+			nzTitle: 'Update rent!',
+			nzContent: UpdateRentsComponent,
+			nzOkText: 'Yes',
+			nzOkType: 'primary',
+			nzOkDanger: true,
+			nzOnOk: () => this.updateRent(rent.id, ref.componentInstance.rentsForm.value),
+			nzCancelText: 'No',
+			nzOnCancel: () => console.log(ref.componentInstance.rentsForm.value)
+		});
+
+		ref.componentInstance.status.setValue(rent.status);
+		ref.componentInstance.expired.setValue(rent.expired);
+	}
+
+	private updateRent(id: string, rent: UpdateRent) {
+		console.log(`${id} többi: ${JSON.stringify(rent)}`);
+		this.rentsHttpService.updateRenter(id, rent).subscribe(() => {
+			this.refreshRents();
+		});
 	}
 }
