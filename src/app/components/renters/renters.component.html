@@ -7,7 +7,7 @@
 			<button class="button is-info is-light modal-btn" (click)="createClick()">Add new renter 📝</button>
 		</div>
 	</div>
-	<nz-table #sortTable [nzData]="filteredRenterList" nzTableLayout="fixed">
+	<nz-table #sortTable [nzData]="filteredRenterList" nzTableLayout="fixed" [nzPageSize]="8">
 		<thead>
 			<tr>
 				<th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
