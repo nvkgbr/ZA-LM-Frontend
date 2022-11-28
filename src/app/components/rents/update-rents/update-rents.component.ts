@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder } from '@angular/forms';
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'lm-update-rents',
@@ -12,7 +12,7 @@ export class UpdateRentsComponent implements OnInit {
 
   public rentsForm = this.fb.group({
     status: [''],
-		expired: ['']
+    expired: ['', Validators.required]
   });
 
 

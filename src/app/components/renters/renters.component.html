@@ -7,21 +7,20 @@
 			<button class="button is-info is-light modal-btn" (click)="createClick()">Add new renter 📝</button>
 		</div>
 	</div>
-
-	<table class="table is-bordered is-striped is-narrow is-fullwidth is-striped">
+	<nz-table #sortTable [nzData]="filteredRenterList" nzTableLayout="fixed">
 		<thead>
-			<tr class="th is-selected">
-				<th class="is-warning has-text-black">Name</th>
-				<th class="is-warning has-text-black">Birth</th>
-				<th class="is-warning has-text-black">Email</th>
-				<th class="is-warning has-text-black has-text-centered">Update</th>
-				<th class="is-warning has-text-black has-text-centered">Delete</th>
+			<tr>
+				<th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
+					{{ column.title }}
+				</th>
+				<th>Update</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let renter of filteredRenterList">
+			<tr *ngFor="let renter of sortTable.data">
 				<td>{{ renter.name }}</td>
-				<td>{{ renter.birth | date : 'YYYY MMMM dd.' }}</td>
+				<td>{{ renter.birth |date:"YYYY MMMM dd. " }}</td>
 				<td>{{ renter.email }}</td>
 				<td class="has-text-centered">
 					<button class="button is-warning is-light" (click)="updateClick(renter)"><i class="fa fa-pencil"></i></button>
@@ -31,5 +30,7 @@
 				</td>
 			</tr>
 		</tbody>
-	</table>
+	</nz-table>
+
+	
 </div>

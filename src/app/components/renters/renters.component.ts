@@ -31,6 +31,26 @@ export class RentersComponent implements OnInit {
 		this._renterList = value;
 	}
 
+	public listOfColumn = [
+		{
+			title: 'Name',
+			compare: (a: Renter, b: Renter) => a.name.localeCompare(b.name),
+			priority: false
+		},
+		{
+			title: 'Birth',
+			compare: (a: Renter, b: Renter) => a.birth.toLocaleString().localeCompare(b.birth.toLocaleString()),
+			priority: 2
+		},
+		{
+			title: 'Email',
+			compare: (a: Renter, b: Renter) => a.email.localeCompare(b.email),
+			priority: 1
+		}
+	];
+
+
+
 	constructor(private renterHttpService: RenterHttpService, private modal: NzModalService, private loadService: LoadService) {
 		this.loadService.show();
 

@@ -3,7 +3,7 @@ import { BookHttpService } from '../../../services/book-http/book-http.service';
 import { RenterHttpService } from '../../../services/renters-http/renters-http.service';
 import { Book } from '../../../model/book.model';
 import { Renter } from 'src/app/model/renter.model';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'lm-create-rents',
@@ -14,9 +14,10 @@ export class CreateRentsComponent implements OnInit {
 	public bookList!: Book[];
 	public renterList!: Renter[];
 	public rentsForm = this.fb.group({
-		renter: [''],
-		book: [''],
-		expired: ['']
+		renter: ['', Validators.required],
+		book: ['', Validators.required],
+		expired: ['', Validators.required]
+
 	});
 
 	constructor(private bookService: BookHttpService, private renterService: RenterHttpService, private readonly fb: FormBuilder) {}
