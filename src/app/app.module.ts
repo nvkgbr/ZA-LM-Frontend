@@ -15,6 +15,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzTableModule } from 'ng-zorro-antd/table';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -54,7 +55,8 @@ registerLocaleData(en);
 		NzDatePickerModule,
 		NzSelectModule,
 		NzGridModule,
-		NzInputModule
+		NzInputModule,
+		NzTableModule
 	]
 })
 export class AppModule {}

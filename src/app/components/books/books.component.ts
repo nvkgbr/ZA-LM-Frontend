@@ -31,6 +31,24 @@ export class BooksComponent implements OnInit {
 		this._bookList = value;
 	}
 
+	public listOfColumn = [
+		{
+			title: 'Title',
+			compare: (a: Book, b: Book) => a.title.localeCompare(b.title),
+			priority: false
+		},
+		{
+			title: 'Author',
+			compare: (a: Book, b: Book) => a.author.localeCompare(b.author),
+			priority: 2
+		},
+		{
+			title: 'ISBN',
+			compare: (a: Book, b: Book) => a.ISBN.localeCompare(b.ISBN),
+			priority: 1
+		}
+	];
+
 	constructor(private bookHttpService: BookHttpService, private modal: NzModalService) {}
 
 	public ngOnInit(): void {

@@ -7,8 +7,9 @@
 			<button class="button is-info is-light modal-btn" (click)="createClick()">Add new book 📝</button>
 		</div>
 	</div>
-
-	<table class="table is-bordered is-striped is-narrow is-fullwidth is-striped">
+	<!--
+  class="table is-bordered is-striped is-narrow is-fullwidth is-striped" -->
+	<!-- <nz-table #sortTable [nzData]="filteredBookList" nzTableLayout="fixed">
 		<thead>
 			<tr class="th is-selected">
 				<th class="is-warning has-text-black">Title</th>
@@ -31,5 +32,30 @@
 				</td>
 			</tr>
 		</tbody>
-	</table>
+	</nz-table> -->
+
+	<nz-table #sortTable [nzData]="filteredBookList" nzTableLayout="fixed">
+		<thead>
+			<tr>
+				<th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
+					{{ column.title }}
+				</th>
+				<th>Update</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let book of sortTable.data">
+				<td>{{ book.title }}</td>
+				<td>{{ book.author }}</td>
+				<td>{{ book.ISBN }}</td>
+				<td class="has-text-centered">
+					<button class="button is-warning is-light" (click)="updateClick(book)"><i class="fa fa-pencil"></i></button>
+				</td>
+				<td class="has-text-centered">
+					<button class="button is-danger is-light" (click)="deleteClick(book)"><i class="fa fa-trash"></i></button>
+				</td>
+			</tr>
+		</tbody>
+	</nz-table>
 </div>
