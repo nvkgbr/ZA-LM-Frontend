@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Renter } from 'src/app/model/renter.model';
+import { Renter, UpdateRenter } from 'src/app/model/renter.model';
 import { PostRenter } from '../../model/renter.model';
 
 @Injectable({
@@ -14,14 +14,21 @@ export class RenterHttpService {
 
 	public getAllRenter(): Observable<Renter[]> {
 		return this.http.get<Renter[]>(this.RENTER_API_URL);
-	}
+	};
 
 	public deleteRenter(id: string): Observable<any> {
 		const url = `${this.RENTER_API_URL}${id}`;
 		return this.http.delete<any>(url);
-	}
+	};
 	public createRenter(renter: PostRenter): Observable<PostRenter> {
 		const url = `${this.RENTER_API_URL}`;
 		return this.http.post<PostRenter>(url, renter);
+	};
+
+	public updateRenter(id: string, renter: UpdateRenter): Observable<any> {
+		const url = `${this.RENTER_API_URL}${id}`;
+		console.log(url);
+
+		return this.http.put(url, renter);
 	}
 }

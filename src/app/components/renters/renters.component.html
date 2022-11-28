@@ -24,7 +24,7 @@
 				<td>{{ renter.birth | date : 'YYYY MMMM dd.' }}</td>
 				<td>{{ renter.email }}</td>
 				<td class="has-text-centered">
-					<button class="button is-warning is-light"><i class="fa fa-pencil"></i></button>
+					<button class="button is-warning is-light" (click)="updateClick(renter)"><i class="fa fa-pencil"></i></button>
 				</td>
 				<td class="has-text-centered">
 					<button class="button is-danger is-light" (click)="deleteClick(renter)"><i class="fa fa-trash"></i></button>

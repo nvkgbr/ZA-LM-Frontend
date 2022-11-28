@@ -5,6 +5,7 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { PostBook } from '../../model/book.model';
 import { CreateBooksComponent } from './create-books/create-books.component';
 import { UpdateBooksComponent } from './update-books/update-books.component';
+import { LoadService } from 'src/app/services/load.service';
 
 @Component({
 	selector: 'lm-books',
@@ -49,29 +50,36 @@ export class BooksComponent implements OnInit {
 		}
 	];
 
-	constructor(private bookHttpService: BookHttpService, private modal: NzModalService) {}
+	constructor(private bookHttpService: BookHttpService, private modal: NzModalService, private loadService: LoadService) {
+		this.loadService.show();
+	}
 
 	public ngOnInit(): void {
 		this.refreshBooks();
 	}
 
 	private refreshBooks(): void {
+		this.loadService.show();
 		this.bookHttpService.getAllBooks().subscribe((books) => {
 			this.bookList = [...books];
 			this.filteredBookList = [...books];
 			console.log(this.bookList);
+			this.loadService.hide();
 		});
 	}
 
 	public handleSearchChange(input: string): void {
+		this.loadService.show();
 		if (input.length >= 3) {
 			setTimeout(() => {
 				this.filteredBookList = this.bookList.filter((book: Book) => {
+					this.loadService.hide();
 					return book?.title?.toLocaleLowerCase().includes(input.toLocaleLowerCase());
 				});
 			}, 1000);
 		} else {
 			this.filteredBookList = this.bookList;
+			this.loadService.hide();
 		}
 	}
 
@@ -96,7 +104,7 @@ export class BooksComponent implements OnInit {
 	}
 
 	public createClick() {
-		const ref: NzModalRef = this.modal.confirm({
+		const ref: NzModalRef = this.modal.info({
 			nzTitle: 'Create new book!',
 			nzContent: CreateBooksComponent,
 			nzOkText: 'Yes',
@@ -116,7 +124,7 @@ export class BooksComponent implements OnInit {
 	}
 
 	public updateClick(book: Book) {
-		const ref: NzModalRef = this.modal.confirm({
+		const ref: NzModalRef = this.modal.info({
 			nzTitle: 'Update book!',
 			nzContent: UpdateBooksComponent,
 			nzOkText: 'Yes',

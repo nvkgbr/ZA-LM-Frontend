@@ -25,6 +25,9 @@ import { CreateRentsComponent } from './components/rents/create-rents/create-ren
 import { CreateBooksComponent } from './components/books/create-books/create-books.component';
 import { CreateRenterComponent } from './components/renters/create-renter/create-renter.component';
 import { UpdateBooksComponent } from './components/books/update-books/update-books.component';
+import { UpdateRenterComponent } from './components/renters/update-renter/update-renter.component';
+import { UpdateRentsComponent } from './components/rents/update-rents/update-rents.component';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 registerLocaleData(en);
 
@@ -40,7 +43,9 @@ registerLocaleData(en);
 		SearcbarComponent,
 		CreateBooksComponent,
 		CreateRenterComponent,
-		UpdateBooksComponent
+		UpdateBooksComponent,
+		UpdateRenterComponent,
+		UpdateRentsComponent
 	],
 	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent],
@@ -56,7 +61,8 @@ registerLocaleData(en);
 		NzSelectModule,
 		NzGridModule,
 		NzInputModule,
-		NzTableModule
+		NzTableModule,
+		NzSpinModule
 	]
 })
 export class AppModule {}

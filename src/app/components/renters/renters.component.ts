@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { Renter } from 'src/app/model/renter.model';
+import { Renter, UpdateRenter } from 'src/app/model/renter.model';
 import { RenterHttpService } from 'src/app/services/renters-http/renters-http.service';
 import { CreateRenterComponent } from './create-renter/create-renter.component';
 import { PostRenter } from '../../model/renter.model';
+import { UpdateRenterComponent } from './update-renter/update-renter.component';
+import { LoadService } from 'src/app/services/load.service';
 @Component({
 	selector: 'lm-renters',
 	templateUrl: './renters.component.html',
@@ -29,29 +31,38 @@ export class RentersComponent implements OnInit {
 		this._renterList = value;
 	}
 
-	constructor(private renterHttpService: RenterHttpService, private modal: NzModalService) {}
+	constructor(private renterHttpService: RenterHttpService, private modal: NzModalService, private loadService: LoadService) {
+		this.loadService.show();
+
+	}
 
 	public ngOnInit(): void {
 		this.refreshRenter();
 	}
 
 	private refreshRenter(): void {
+		this.loadService.show();
 		this.renterHttpService.getAllRenter().subscribe((renter) => {
 			this.renterList = [...renter];
 			this.filteredRenterList = [...renter];
+			this.loadService.hide();
 			console.log(this.renterList);
 		});
 	}
 
 	public handleSearchChange(input: string): void {
+		this.loadService.show();
 		if (input.length >= 3) {
 			setTimeout(() => {
+				this.loadService.hide();
 				this.filteredRenterList = this.renterList.filter((renter: Renter) => {
 					return renter?.name.toLocaleLowerCase().includes(input.toLocaleLowerCase());
 				});
 			}, 1000);
 		} else {
 			this.filteredRenterList = this.renterList;
+			this.loadService.hide();
+
 		}
 	}
 
@@ -76,7 +87,7 @@ export class RentersComponent implements OnInit {
 	}
 
 	public createClick() {
-		const ref: NzModalRef = this.modal.confirm({
+		const ref: NzModalRef = this.modal.info({
 			nzTitle: 'Create new rent!',
 			nzContent: CreateRenterComponent,
 			nzOkText: 'Yes',
@@ -93,5 +104,30 @@ export class RentersComponent implements OnInit {
 			this.refreshRenter();
 		});
 		console.log(renter);
+	};
+
+	public updateClick(renter: Renter) {
+		const ref: NzModalRef = this.modal.info({
+			nzTitle: 'Update renter!',
+			nzContent: UpdateRenterComponent,
+			nzOkText: 'Yes',
+			nzOkType: 'primary',
+			nzOkDanger: true,
+			nzOnOk: () => this.updateRenter(renter.id, ref.componentInstance.renterForm.value),
+			nzCancelText: 'No',
+			nzOnCancel: () => console.log(ref.componentInstance.renterForm.value)
+		});
+
+		ref.componentInstance.name.setValue(renter.name);
+		ref.componentInstance.birth.setValue(renter.birth);
+		ref.componentInstance.email.setValue(renter.email);
 	}
+
+	private updateRenter(id: string, renter: UpdateRenter) {
+		console.log(`${id} többi: ${JSON.stringify(renter)}`);
+		this.renterHttpService.updateRenter(id, renter).subscribe(() => {
+			this.refreshRenter();
+		});
+	}
+
 }
