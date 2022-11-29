@@ -17,7 +17,6 @@ export class CreateRentsComponent implements OnInit {
 		renter: ['', Validators.required],
 		book: ['', Validators.required],
 		expired: ['', Validators.required]
-
 	});
 
 	constructor(private bookService: BookHttpService, private renterService: RenterHttpService, private readonly fb: FormBuilder) {}
