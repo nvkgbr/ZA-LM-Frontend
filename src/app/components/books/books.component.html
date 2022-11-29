@@ -8,7 +8,7 @@
 		</div>
 	</div>
 
-	<nz-table #sortTable [nzData]="filteredBookList" nzTableLayout="fixed">
+	<nz-table #sortTable [nzData]="filteredBookList" nzTableLayout="fixed" [nzPageSize]="8">
 		<thead>
 			<tr>
 				<th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">

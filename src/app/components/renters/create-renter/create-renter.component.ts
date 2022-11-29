@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { nameRegex } from '../../../../lib/validators/validator.properties';
+import { nameRegex } from 'src/lib/validators/validator.properties';
 
 @Component({
 	selector: 'lm-create-renter',
@@ -14,7 +14,7 @@ export class CreateRenterComponent implements OnInit {
 		email: ['', [Validators.required, Validators.email]]
 	});
 
-	constructor(private readonly fb: FormBuilder) {}
+	constructor(private readonly fb: FormBuilder) { }
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 }

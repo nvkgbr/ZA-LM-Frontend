@@ -7,28 +7,28 @@
 			<button class="button is-info is-light modal-btn" (click)="createClick()">Add new rent 📝</button>
 		</div>
 	</div>
-	<table class="table is-bordered is-striped is-narrow is-fullwidth is-striped">
+	<nz-table #sortTable [nzData]="filteredRentsList" nzTableLayout="fixed" [nzPageSize]="8">
 		<thead>
-			<tr class="th is-selected">
-				<th class="is-warning has-text-black">Title</th>
-				<th class="is-warning has-text-black">Renter Name</th>
-				<th class="is-warning has-text-black">Status</th>
-				<th class="is-warning has-text-black has-text-centered">Update</th>
-				<th class="is-warning has-text-black has-text-centered">Delete</th>
+			<tr>
+				<th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
+					{{ column.title }}
+				</th>
+				<th>Update</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let rents of filteredRentsList">
-				<td>{{ rents.book.title }}</td>
-				<td>{{ rents.renter.name }}</td>
-				<td>{{ rents.status }}</td>
+			<tr *ngFor="let rent of sortTable.data">
+				<td>{{ rent.book.title }}</td>
+				<td>{{ rent.renter.name }}</td>
+				<td>{{ rent.status }}</td>
 				<td class="has-text-centered">
-					<button class="button is-warning is-light" (click)="updateClick(rents)"><i class="fa fa-pencil"></i></button>
+					<button class="button is-warning is-light" (click)="updateClick(rent)"><i class="fa fa-pencil"></i></button>
 				</td>
 				<td class="has-text-centered">
-					<button class="button is-danger is-light" (click)="deleteClick(rents)"><i class="fa fa-trash"></i></button>
+					<button class="button is-danger is-light" (click)="deleteClick(rent)"><i class="fa fa-trash"></i></button>
 				</td>
 			</tr>
 		</tbody>
-	</table>
+	</nz-table>
 </div>

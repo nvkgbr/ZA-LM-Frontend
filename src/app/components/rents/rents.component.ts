@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { Book } from 'src/app/model/book.model';
+import { Renter } from 'src/app/model/renter.model';
 import { Rents, UpdateRent } from 'src/app/model/rents.model';
 import { LoadService } from 'src/app/services/load.service';
 import { RentsHttpService } from 'src/app/services/rents-http/rents-http.service';
@@ -31,6 +33,24 @@ export class RentsComponent implements OnInit {
 	public set rentsList(value: Array<Rents>) {
 		this._rentsList = value;
 	}
+
+	public listOfColumn = [
+		{
+			title: 'Title',
+			compare: (a: Rents, b: Rents) => a.book.title.localeCompare(b.book.title),
+			priority: false
+		},
+		{
+			title: 'Renter name',
+			compare: (a: Rents, b: Rents) => a.renter.name.localeCompare(b.renter.name),
+			priority: 2
+		},
+		{
+			title: 'Status',
+			compare: (a: Rents, b: Rents) => a.status.localeCompare(b.status),
+			priority: 1
+		}
+	];
 
 	constructor(private rentsHttpService: RentsHttpService, private modal: NzModalService, private loadService: LoadService) { 
 		this.loadService.show();

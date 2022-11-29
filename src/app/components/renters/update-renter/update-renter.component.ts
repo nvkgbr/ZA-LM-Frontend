@@ -11,9 +11,9 @@ export class UpdateRenterComponent implements OnInit {
 	constructor(private readonly fb: FormBuilder) {}
 
 	public renterForm = this.fb.group({
-		name: ['', [Validators.required, Validators.pattern(nameRegex)]],
-		birth: ['', Validators.required],
-		email: ['', [Validators.required, Validators.email]]
+    name: ['', [Validators.required, Validators.pattern(nameRegex)]],
+    birth: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]]
 	});
 
 	public get name(): AbstractControl<any, any> | null {
