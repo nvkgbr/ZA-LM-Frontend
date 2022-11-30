@@ -13,7 +13,7 @@
 		<tbody>
 			<tr *ngFor="let log of sortTable.data">
 				<td>{{ log.method }}</td>
-				<td>{{ log.time | date:"YYYY MMMM dd." }}</td>
+				<td>{{ log.time | date:"YYYY MMMM dd. hh:mm:ss a" }}</td>
 				<td>{{ log.url }}</td>
                 <td>{{ log.data }}</td>
 			</tr>

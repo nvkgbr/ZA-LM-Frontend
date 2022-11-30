@@ -60,12 +60,17 @@ export class BooksComponent implements OnInit {
 
 	private refreshBooks(): void {
 		this.loadService.show();
-		this.bookHttpService.getAllBooks().subscribe((books) => {
-			this.bookList = [...books];
-			this.filteredBookList = [...books];
-			console.log(this.bookList);
-			this.loadService.hide();
-		});
+		setTimeout(() => {
+			this.bookHttpService.getAllBooks().subscribe((books) => {
+				this.bookList = [...books];
+				this.filteredBookList = [...books];
+				console.log(this.bookList);
+				this.loadService.hide();
+					
+				
+			});
+		}, 1000);
+		
 	}
 
 	public handleSearchChange(input: string): void {

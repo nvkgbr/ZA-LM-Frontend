@@ -62,12 +62,15 @@ export class RentersComponent implements OnInit {
 
 	private refreshRenter(): void {
 		this.loadService.show();
-		this.renterHttpService.getAllRenter().subscribe((renter) => {
-			this.renterList = [...renter];
-			this.filteredRenterList = [...renter];
-			this.loadService.hide();
-			console.log(this.renterList);
-		});
+		setTimeout(() => {
+			this.renterHttpService.getAllRenter().subscribe((renter) => {
+				this.renterList = [...renter];
+				this.filteredRenterList = [...renter];
+				this.loadService.hide();
+				console.log(this.renterList);
+			});
+		}, 1000);
+
 	}
 
 	public handleSearchChange(input: string): void {

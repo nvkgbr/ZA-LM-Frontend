@@ -52,7 +52,7 @@ export class RentsComponent implements OnInit {
 		}
 	];
 
-	constructor(private rentsHttpService: RentsHttpService, private modal: NzModalService, private loadService: LoadService) { 
+	constructor(private rentsHttpService: RentsHttpService, private modal: NzModalService, private loadService: LoadService) {
 		this.loadService.show();
 	}
 
@@ -62,19 +62,22 @@ export class RentsComponent implements OnInit {
 
 	private refreshRents(): void {
 		this.loadService.show();
-		this.rentsHttpService.getAllRents().subscribe((rents) => {
-			this.rentsList = [...rents];
-			this.filteredRentsList = [...rents];
-			this.loadService.hide();
-			console.log(this.rentsList);
-		});
-	}
+		setTimeout(() => {
+			this.rentsHttpService.getAllRents().subscribe((rents) => {
+				this.rentsList = [...rents];
+				this.filteredRentsList = [...rents];
+				this.loadService.hide();
+				console.log(this.rentsList);
+			});
+
+		}, 1000);
+	};
 
 	public handleSearchChange(input: string): void {
 		this.loadService.show();
 		if (input.length >= 3) {
 			setTimeout(() => {
-			this.loadService.hide();
+				this.loadService.hide();
 				this.filteredRentsList = this.rentsList.filter((rents: Rents) => {
 					return rents?.renter?.name.toLocaleLowerCase().includes(input.toLocaleLowerCase());
 				});
