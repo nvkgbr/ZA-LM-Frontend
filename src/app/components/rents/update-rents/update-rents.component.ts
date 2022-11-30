@@ -14,12 +14,6 @@ export class UpdateRentsComponent implements OnInit {
 		expired: ['', Validators.required]
 	});
 
-
-  public rentsForm = this.fb.group({
-    status: [''],
-    expired: ['', Validators.required]
-  });
-
 	public get status(): AbstractControl<any, any> | null {
 		return this.rentsForm.get('status');
 	}
