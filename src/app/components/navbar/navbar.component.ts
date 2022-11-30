@@ -15,7 +15,8 @@ export class NavbarComponent implements OnInit {
 	routes: NavbarItem[] = [
 		{ route: 'books', name: 'Books' },
 		{ route: 'rents', name: 'Rents' },
-		{ route: 'renters', name: 'Renters' }
+		{ route: 'renters', name: 'Renters' },
+		{ route: 'log', name: 'Log' }
 	];
 
 	constructor(private router: Router) {}
