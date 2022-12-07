@@ -1,1 +1,34 @@
-<p>rents works!</p>
+<div class="container is-max-desktop">
+	<div nz-row>
+		<div nz-col nzXs="8" nzSm="10" nzMd="12" nzLg="18" nzXl="20">
+			<lm-searcbar (inputChanged)="handleSearchChange($event)"></lm-searcbar>
+		</div>
+		<div nz-col nzXs="6" nzSm="8" nzMd="12" nzLg="6" nzXl="4">
+			<button class="button is-info is-light modal-btn" (click)="createClick()">Add new rent 📝</button>
+		</div>
+	</div>
+	<nz-table #sortTable [nzData]="filteredRentsList" nzTableLayout="fixed" [nzPageSize]="8">
+		<thead>
+			<tr>
+				<th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
+					{{ column.title }}
+				</th>
+				<th>Update</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let rent of sortTable.data">
+				<td>{{ rent.book.title }}</td>
+				<td>{{ rent.renter.name }}</td>
+				<td>{{ rent.status }}</td>
+				<td class="has-text-centered">
+					<button class="button is-warning is-light" (click)="updateClick(rent)"><i class="fa fa-pencil"></i></button>
+				</td>
+				<td class="has-text-centered">
+					<button class="button is-danger is-light" (click)="deleteClick(rent)"><i class="fa fa-trash"></i></button>
+				</td>
+			</tr>
+		</tbody>
+	</nz-table>
+</div>

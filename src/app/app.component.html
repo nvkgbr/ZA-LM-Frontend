@@ -1,2 +1,5 @@
+
 <lm-navbar></lm-navbar>
 <router-outlet></router-outlet>
+<nz-spin class="loadMask" nzSimple *ngIf="isLoad$ | async" nzTip="Loading..."></nz-spin>
+

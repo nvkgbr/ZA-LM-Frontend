@@ -1,1 +1,22 @@
-<p>logs works!</p>
+<div class="container is-max-desktop">
+
+	<nz-table #sortTable [nzData]="logList" nzTableLayout="fixed" [nzPageSize]="8">
+		<thead>
+			<tr>
+				<th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
+					{{ column.title }}
+				</th>
+				<th>Url</th>
+				<th>Data</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let log of sortTable.data">
+				<td>{{ log.method }}</td>
+				<td>{{ log.time | date:"YYYY MMMM dd. hh:mm:ss a" }}</td>
+				<td>{{ log.url }}</td>
+                <td>{{ log.data }}</td>
+			</tr>
+		</tbody>
+	</nz-table>
+</div>

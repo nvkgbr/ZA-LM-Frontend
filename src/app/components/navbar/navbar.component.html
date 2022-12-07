@@ -1,35 +1,21 @@
-<nav
-  class="navbar is-warning is-size-5"
-  role="navigation"
-  aria-label="main navigation"
->
-  <div class="navbar-brand">
-    <a class="navbar-item has-text-weight-bold"> 📚Library </a>
+<nav class="navbar is-warning is-size-5" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+		<a class="navbar-item has-text-weight-bold"> 📚Library </a>
 
-    <a
-      role="button"
-      class="navbar-burger"
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="lm-navbar"
-    >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="lm-navbar">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
 
-  <div id="lm-navbar" class="navbar-menu">
-    <div class="navbar-start">
-      <ng-container *ngFor="let route of routes">
-        <a
-          class="navbar-item"
-          routerLink="/{{ route.route }}"
-          routerLinkActive="is-active"
-        >
-          {{ route.name }}
-        </a>
-      </ng-container>
-    </div>
-  </div>
+	<div id="lm-navbar" class="navbar-menu">
+		<div class="navbar-start">
+			<ng-container *ngFor="let route of routes">
+				<a class="navbar-item" routerLink="/{{ route.route }}" routerLinkActive="is-active">
+					{{ route.name }}
+				</a>
+			</ng-container>
+		</div>
+	</div>
 </nav>

@@ -1,0 +1,22 @@
+<fieldset>
+	<form [formGroup]="rentsForm">
+		<table>
+			<tr>
+				<td><label>Status:</label></td>
+				<td>
+					<nz-select formControlName="status" nzPlaceHolder="Choose">
+						<nz-option nzValue="active" nzLabel="active"> </nz-option>
+						<nz-option nzValue="expired" nzLabel="expired"> </nz-option>
+					</nz-select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td><label>Expired at:</label></td>
+				<td>
+					<nz-date-picker formControlName="expired"></nz-date-picker>
+				</td>
+			</tr>
+		</table>
+	</form>
+</fieldset>

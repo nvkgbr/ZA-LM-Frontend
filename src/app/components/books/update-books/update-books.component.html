@@ -1,0 +1,33 @@
+<fieldset>
+	<form nz-form [formGroup]="bookForm">
+		<table>
+			<tr>
+				<td><label>Title:</label>	
+				<td>
+					<input formControlName="title" nz-input placeholder="Title" />
+					<span *ngIf="TitleIsValid">
+						Invalid 
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Author:</label></td>
+				<td><input type="text" nz-input formControlName="author" placeholder="Author" />
+					<span *ngIf="AuthorIsValid">
+						Invalid 
+					</span>
+				</td>
+					
+			</tr>
+			<tr>
+				<td><label>ISBN:</label></td>
+				<td><input type="text" nz-input placeholder="ISBN" formControlName="ISBN" />
+					<span *ngIf="ISBNIsValid">
+						Invalid
+					</span>
+				</td>
+					
+			</tr>
+		</table>
+	</form>
+</fieldset>

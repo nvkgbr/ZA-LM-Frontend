@@ -1,0 +1,11 @@
+nz-select {
+	margin: 0 8px 10px 10px;
+	width: 120px;
+}
+nz-date-picker {
+	margin-left: 10px;
+}
+
+.ng-invalid:not(form){
+    border:1px solid red;
+}

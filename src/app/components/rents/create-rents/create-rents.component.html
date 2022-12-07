@@ -1,0 +1,28 @@
+<fieldset>
+	<form [formGroup]="rentsForm">
+		<table>
+			<tr>
+				<td><label>Renter:</label></td>
+				<td>
+					<nz-select formControlName="renter" nzPlaceHolder="Choose">
+						<nz-option *ngFor="let renter of renterList" nzValue="{{ renter.id }}" nzLabel="{{ renter.name }}"> </nz-option>
+					</nz-select>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Book:</label></td>
+				<td>
+					<nz-select formControlName="book" nzPlaceHolder="Choose">
+						<nz-option *ngFor="let book of bookList" nzValue="{{ book.id }}" nzLabel="{{ book.title }}"> </nz-option>
+					</nz-select>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Expired at:</label></td>
+				<td>
+					<nz-date-picker formControlName="expired"></nz-date-picker>
+				</td>
+			</tr>
+		</table>
+	</form>
+</fieldset>
